@@ -1,26 +1,23 @@
 import React, { Children, cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
 
-class TreePlaceholder extends Component {
-  render() {
-    const {
-      children,
-      connectDropTarget,
-      treeId,
-      drop,
-      ...otherProps
-    } = this.props;
-    return connectDropTarget(
-      <div>
-        {Children.map(children, child =>
-          cloneElement(child, {
-            ...otherProps,
-          })
-        )}
-      </div>
-    );
-  }
-}
+const TreePlaceholder = ({
+  children,
+  connectDropTarget,
+  treeId,
+  drop,
+  ...otherProps
+}) => {
+  return connectDropTarget(
+    <div>
+      {Children.map(children, (child) =>
+        cloneElement(child, {
+          ...otherProps,
+        })
+      )}
+    </div>
+  );
+};
 
 TreePlaceholder.defaultProps = {
   canDrop: false,
